@@ -52,3 +52,12 @@
     });
   }
 });
+/* Close mobile menu when viewport grows */
+window.addEventListener('resize', function () {
+  if (window.innerWidth > 900) {
+    var m = document.getElementById('navMenu') || document.querySelector('nav ul');
+    var t = document.getElementById('menuToggle') || document.querySelector('.menu-toggle');
+    if (m) m.classList.remove('open');
+    if (t) { t.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); }
+  }
+});
