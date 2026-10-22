@@ -93,3 +93,20 @@ footer span{color:var(--gold)}
   section { padding: 3rem 1.2rem; }
 }
 
+/* --- Mobile navbar cleanup: remove stray lines --- */
+@media (max-width: 900px) {
+  /* Kill the animated underline that showed on every link */
+  nav a::after { display: none !important; content: none !important; }
+
+  /* Kill any borders inside the mobile menu that look like a mid-line */
+  nav ul { border-top: 0 !important; border-bottom: 1px solid var(--border) !important; }
+  nav ul li { border-bottom: 0 !important; }
+  nav ul a { border-bottom: 0 !important; }
+
+  /* In case the line is coming from the <li> separators */
+  nav ul li + li a { border-top: 0 !important; }
+
+  /* Ensure the menu panel itself has no inner rules */
+  nav ul::before,
+  nav ul::after { display: none !important; content: none !important; }
+}
