@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Lubowa Sempa</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="siteHeader">
+  <nav>
+    <h1><a href="index.html">Lubowa Sempa</a></h1>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul id="navMenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero compact" style="background-image:linear-gradient(rgba(10,8,12,.7),rgba(10,8,12,.9)),url('https://picsum.photos/seed/contactbg/1600/700');">
+    <h2>Get in touch</h2>
+    <p>I answer within two days.</p>
+  </section>
+
+  <section>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item"><strong>Phone / WhatsApp</strong><p>+27 82 555 0147</p></div>
+        <div class="contact-item"><strong>Email</strong><p>babasipho@healing.co.za</p></div>
+        <div class="contact-item"><strong>Where</strong><p>42 Rose Street, Melville<br>Uganda, 2092</p></div>
+        <div class="contact-item"><strong>Hours</strong><p>Monday to Saturday<br>9am &ndash; 6pm</p></div>
+        <p class="contact-note">If you are outside South Africa, tell me your time zone.</p>
+      </div>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="message" placeholder="What is troubling you?" required></textarea>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>&copy; 2026 <span>Lubowa Sempa</span> Traditional Healing &bull; Uganda</footer>
+<script src="js/script.js"></script>
+</body>
+</html>
