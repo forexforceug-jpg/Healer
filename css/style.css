@@ -110,3 +110,32 @@ footer span{color:var(--gold)}
   nav ul::before,
   nav ul::after { display: none !important; content: none !important; }
 }
+
+/* --- Legal pages --- */
+.legal h3 { font-family: 'Lora', serif; color: var(--gold); font-size: 1.15rem; margin: 2rem 0 .6rem; font-weight: 600; }
+.legal p { color: var(--muted); font-size: .95rem; margin-bottom: .8rem; max-width: 780px; }
+.legal a { color: var(--gold); }
+
+/* --- Blog section --- */
+.blog-section { border-top: 1px solid var(--border); }
+.blog-intro { text-align: center; color: var(--muted); margin-top: -1.5rem; margin-bottom: 2.5rem; font-style: italic; }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+.blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: transform .3s, border-color .3s; }
+.blog-card:hover { transform: translateY(-4px); border-color: rgba(201,162,75,.4); }
+.blog-card img { width: 100%; height: 190px; object-fit: cover; filter: sepia(.2) contrast(1.05); }
+.blog-body { padding: 1.4rem; }
+.blog-date { display: block; color: var(--gold); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+.blog-body h3 { font-family: 'Lora', serif; color: var(--text); font-size: 1.15rem; font-weight: 600; margin-bottom: .7rem; line-height: 1.35; }
+.blog-body p { color: var(--muted); font-size: .9rem; margin-bottom: 1rem; }
+.read-more { color: var(--gold); font-size: .85rem; text-decoration: none; letter-spacing: .04em; }
+.read-more:hover { color: #dbb760; }
+
+/* --- Footer links --- */
+.footer-links { margin-top: .6rem; font-size: .82rem; }
+.footer-links a { color: var(--muted); text-decoration: none; transition: color .25s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* --- Responsive additions --- */
+@media (max-width: 900px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
