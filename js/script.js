@@ -61,3 +61,4 @@ window.addEventListener('resize', function () {
     if (t) { t.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); }
   }
 });
+
