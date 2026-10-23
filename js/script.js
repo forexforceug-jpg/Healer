@@ -63,43 +63,31 @@ window.addEventListener('resize', function () {
   }
 });
 
-/* --- Get in touch: open Tawk.to chat (or fall back) --- */
-(function () {
-  function openTawk() {
-    if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-      try { window.Tawk_API.maximize(); return true; } catch (e) { return false; }
-    }
-    return false;
-  }
+/* --- Get in touch links: open Tawk, fallback to contact page --- */
+document.addEventListener('DOMContentLoaded', function () {
+  var links = document.querySelectorAll('a.get-in-touch');
+  console.log('[get-in-touch] found', links.length, 'link(s)');
 
-  function attach() {
-    var links = document.querySelectorAll('.get-in-touch');
-    if (!links.length) {
-      console.warn('[get-in-touch] No links found in DOM.');
-      return;
-    }
-    console.log('[get-in-touch] Wired ' + links.length + ' link(s).');
-    links.forEach(function (link) {
-      if (link.dataset.wired === '1') return;
-      link.dataset.wired = '1';
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('[get-in-touch] Clicked:', link.getAttribute('data-title'));
-        if (openTawk()) return;
-        setTimeout(function () {
-          if (!openTawk()) {
-            console.warn('[get-in-touch] Tawk not loaded, navigating to contact.html');
-            window.location.href = 'contact.html';
-          }
-        }, 800);
-      });
+  links.forEach(function (link) {
+    // Force the href to a safe no-op so it never navigates to itself
+    link.setAttribute('href', 'javascript:void(0)');
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var tryOpen = function () {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+          try { window.Tawk_API.maximize(); return true; } catch (err) { return false; }
+        }
+        return false;
+      };
+
+      if (tryOpen()) return;
+      setTimeout(function () {
+        if (!tryOpen()) {
+          window.location.href = 'contact.html';
+        }
+      }, 900);
     });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', attach);
-  } else {
-    attach();
-  }
-})();
+  });
+});
