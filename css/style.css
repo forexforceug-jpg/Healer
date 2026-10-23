@@ -1595,3 +1595,38 @@ footer { position: relative; z-index: 1; }
   .form-social-row a { width: 34px; height: 34px; }
   .form-social-row svg { width: 16px; height: 16px; }
 }
+
+/* --- Local logo adjustments (Visa, Airtel, MTN) --- */
+.payment-icon img,
+.form-payment-icons .payment-icon img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 22px;
+  max-width: 54px;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  /* For photos of logos with their own background, keep them crisp */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* If any local logo appears too tight against the border, add a little breathing room */
+.payment-icon img[src*="7.jpg"],
+.payment-icon img[src*="8.png"],
+.payment-icon img[src*="9.jpg"],
+.form-payment-icons .payment-icon img[src*="7.jpg"],
+.form-payment-icons .payment-icon img[src*="8.png"],
+.form-payment-icons .payment-icon img[src*="9.jpg"] {
+  max-height: 20px;
+  max-width: 50px;
+}
+
+@media (max-width: 480px) {
+  .payment-icon img[src*="7.jpg"],
+  .payment-icon img[src*="8.png"],
+  .payment-icon img[src*="9.jpg"] {
+    max-height: 16px;
+    max-width: 40px;
+  }
+}
