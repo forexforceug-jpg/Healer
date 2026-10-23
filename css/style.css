@@ -1455,3 +1455,85 @@ footer { position: relative; z-index: 1; }
   .trust-icon { width: 48px; height: 48px; }
   .trust-icon svg { width: 22px; height: 22px; }
 }
+
+/* --- Payment methods inside contact form --- */
+.form-payment-methods {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+.form-payment-label {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--muted);
+  margin-bottom: .6rem;
+}
+.form-payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+.form-payment-icons .payment-icon {
+  height: 28px;
+  min-width: 44px;
+  padding: 3px 6px;
+  background: #fff;
+  border: 1px solid var(--rule);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.form-payment-icons .payment-icon:hover {
+  transform: translateY(-1px);
+  border-color: var(--ink);
+}
+.form-payment-icons .payment-icon img {
+  display: block;
+  max-height: 22px;
+  max-width: 54px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.form-payment-note {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-top: .7rem;
+  margin-bottom: 0;
+}
+
+/* Get in touch link below contact form */
+.contact-get-in-touch {
+  margin-top: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--muted);
+  text-align: center;
+}
+.contact-get-in-touch .get-in-touch {
+  color: var(--clay-deep);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.02rem;
+  border-bottom: 1px solid var(--rule-dark);
+  text-decoration: none;
+  padding-bottom: 1px;
+  transition: color .2s ease, border-color .2s ease;
+}
+.contact-get-in-touch .get-in-touch:hover {
+  color: var(--clay);
+  border-bottom-color: var(--clay);
+}
+
+@media (max-width: 480px) {
+  .form-payment-icons .payment-icon { height: 24px; padding: 2px 5px; }
+  .form-payment-icons .payment-icon img { max-height: 18px; max-width: 44px; }
+}
