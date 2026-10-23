@@ -732,3 +732,43 @@ footer { position: relative; z-index: 1; }
     font-size: 1.1rem;
   }
 }
+
+/* --- Lead service (love spells) --- */
+.lead-service {
+  border: 1px solid var(--rule-dark);
+  border-left: 4px solid var(--clay);
+  background: rgba(139, 74, 43, 0.04);
+  padding: 1.8rem 1.9rem;
+  margin: 0 0 2.5rem 0;
+}
+.lead-eyebrow {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .88rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--clay-deep);
+  margin-bottom: .4rem;
+}
+.lead-service h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--ink);
+  margin: 0 0 .6rem 0;
+  line-height: 1.15;
+}
+.lead-service p {
+  font-family: 'Lora', serif;
+  color: var(--ink-2);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .lead-service { padding: 1.4rem 1.3rem; margin-bottom: 2rem; }
+  .lead-service h3 { font-size: 1.45rem; }
+  .lead-service p { font-size: .96rem; }
+}
