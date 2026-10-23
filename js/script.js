@@ -52,6 +52,7 @@
     });
   }
 });
+
 /* Close mobile menu when viewport grows */
 window.addEventListener('resize', function () {
   if (window.innerWidth > 900) {
@@ -62,27 +63,43 @@ window.addEventListener('resize', function () {
   }
 });
 
-/* --- Get in touch: open Tawk.to chat directly --- */
+/* --- Get in touch: open Tawk.to chat (or fall back) --- */
 (function () {
   function openTawk() {
     if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-      window.Tawk_API.maximize();
-      return true;
+      try { window.Tawk_API.maximize(); return true; } catch (e) { return false; }
     }
     return false;
   }
 
-  document.querySelectorAll('.get-in-touch').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      // Try immediately
-      if (openTawk()) return;
-      // Tawk may not be loaded yet on first click — wait briefly, then fall back
-      setTimeout(function () {
-        if (!openTawk()) {
-          window.location.href = 'contact.html';
-        }
-      }, 700);
+  function attach() {
+    var links = document.querySelectorAll('.get-in-touch');
+    if (!links.length) {
+      console.warn('[get-in-touch] No links found in DOM.');
+      return;
+    }
+    console.log('[get-in-touch] Wired ' + links.length + ' link(s).');
+    links.forEach(function (link) {
+      if (link.dataset.wired === '1') return;
+      link.dataset.wired = '1';
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('[get-in-touch] Clicked:', link.getAttribute('data-title'));
+        if (openTawk()) return;
+        setTimeout(function () {
+          if (!openTawk()) {
+            console.warn('[get-in-touch] Tawk not loaded, navigating to contact.html');
+            window.location.href = 'contact.html';
+          }
+        }, 800);
+      });
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attach);
+  } else {
+    attach();
+  }
 })();
