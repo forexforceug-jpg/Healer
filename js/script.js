@@ -62,71 +62,27 @@ window.addEventListener('resize', function () {
   }
 });
 
-
-
-/* --- Consultation modal --- */
+/* --- Get in touch: open Tawk.to chat directly --- */
 (function () {
-  var modal = document.getElementById('consultModal');
-  if (!modal) return;
-
-  var titleEl = document.getElementById('modalTitle');
-  var subEl   = document.getElementById('modalSub');
-  var bodyEl  = document.getElementById('modalBody');
-  var cta     = document.getElementById('modalCTA');
-  var closeBtn = modal.querySelector('.modal-close');
-  var lastFocused = null;
-
-  function openModal(subject) {
-    if (subject) {
-      bodyEl.innerHTML = '<em>' + subject + '</em>';
-    } else {
-      bodyEl.innerHTML = '<em>a consultation</em>';
+  function openTawk() {
+    if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+      window.Tawk_API.maximize();
+      return true;
     }
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    lastFocused = document.activeElement;
-    setTimeout(function () { closeBtn.focus(); }, 50);
+    return false;
   }
 
-  function closeModal() {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (lastFocused && lastFocused.focus) lastFocused.focus();
-  }
-
-  // Open from any .get-in-touch link
   document.querySelectorAll('.get-in-touch').forEach(function (link) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      var subject = link.getAttribute('data-title') || '';
-      openModal(subject);
-    });
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) closeModal();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-  });
-
-  // CTA: open Tawk.to chat if available, else fall back to contact page
-  cta.addEventListener('click', function () {
-    closeModal();
-    if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-      window.Tawk_API.maximize();
-    } else {
-      // Tawk not loaded yet: try again shortly, then fall back
+      // Try immediately
+      if (openTawk()) return;
+      // Tawk may not be loaded yet on first click — wait briefly, then fall back
       setTimeout(function () {
-        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-          window.Tawk_API.maximize();
-        } else {
+        if (!openTawk()) {
           window.location.href = 'contact.html';
         }
-      }, 600);
-    }
+      }, 700);
+    });
   });
 })();
