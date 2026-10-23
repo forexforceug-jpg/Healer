@@ -601,70 +601,6 @@ footer { position: relative; z-index: 1; }
 /* Hero compact should never cover the header even with long titles */
 .hero.compact { padding-top: calc(var(--navh) + 1rem) !important; }
 
-/* --- Service cards: bulletproof styling --- */
-.services-list {
-  display: block !important;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-.service-card {
-  display: grid !important;
-  grid-template-columns: 100px 1fr !important;
-  gap: 1.6rem;
-  align-items: start;
-  padding: 1.8rem 0 !important;
-  margin: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-top: 1px solid var(--rule-dark) !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-}
-
-.services-list .service-card:first-child {
-  border-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.service-card img {
-  width: 100px !important;
-  height: 100px !important;
-  object-fit: cover !important;
-  display: block !important;
-  border: 1px solid var(--ink) !important;
-  padding: 3px !important;
-  background: var(--paper) !important;
-  margin: 0 !important;
-}
-
-.service-card h3 {
-  font-family: 'Playfair Display', serif !important;
-  font-weight: 600 !important;
-  font-size: 1.35rem !important;
-  color: var(--ink) !important;
-  letter-spacing: .01em;
-  margin: 0 0 .4rem 0 !important;
-  padding: 0 !important;
-  line-height: 1.25;
-}
-
-.service-card h3::before {
-  content: "— " !important;
-  color: var(--clay) !important;
-}
-
-.service-card p {
-  font-family: 'Lora', serif !important;
-  font-weight: 400 !important;
-  color: var(--ink-2) !important;
-  font-size: .98rem !important;
-  line-height: 1.7;
-  margin: 0 !important;
-  padding: 0 !important;
-}
 
 /* Hero on services page: keep it readable */
 .services-page-hero,
@@ -688,4 +624,111 @@ footer { position: relative; z-index: 1; }
   }
   .service-card h3 { font-size: 1.18rem !important; }
   .service-card p  { font-size: .93rem !important; }
+}
+
+/* --- Services page: clean editorial rows --- */
+.services-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem;
+}
+
+.services-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.service-card {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1.8rem;
+  align-items: start;
+  padding: 2rem 0;
+  border-top: 1px solid var(--rule-dark);
+  background: transparent;
+}
+
+.services-list .service-card:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.service-card img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--ink);
+  padding: 4px;
+  background: var(--paper);
+  margin: 0;
+}
+
+.service-body {
+  padding-top: .3rem;
+}
+
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 1.45rem;
+  color: var(--ink);
+  margin: 0 0 .5rem 0;
+  padding: 0;
+  line-height: 1.2;
+  letter-spacing: .01em;
+}
+
+.service-card h3::before {
+  content: "— ";
+  color: var(--clay);
+}
+
+.service-card p {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  color: var(--ink-2);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile: smaller thumbnails, tighter spacing */
+@media (max-width: 900px) {
+  .services-section {
+    padding: 2.5rem 1.2rem;
+  }
+  .service-card {
+    grid-template-columns: 80px 1fr;
+    gap: 1.1rem;
+    padding: 1.5rem 0;
+  }
+  .service-card img {
+    width: 80px;
+    height: 80px;
+    padding: 3px;
+  }
+  .service-card h3 {
+    font-size: 1.2rem;
+  }
+  .service-card p {
+    font-size: .95rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-card {
+    grid-template-columns: 68px 1fr;
+    gap: .9rem;
+  }
+  .service-card img {
+    width: 68px;
+    height: 68px;
+  }
+  .service-card h3 {
+    font-size: 1.1rem;
+  }
 }
