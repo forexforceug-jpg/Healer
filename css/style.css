@@ -457,3 +457,50 @@ footer span{color:var(--clay-deep);font-style:normal}
   .blog-body h3,.service-card h3{font-size:1.18rem}
 }
 
+/* --- Remove excess mobile nav lines --- */
+@media (max-width: 900px) {
+  /* Menu panel: one clean line under the header only */
+  nav ul {
+    background: var(--paper-2) !important;
+    padding: .25rem 0 !important;
+    border-top: 0 !important;
+    border-bottom: 1px solid var(--ink) !important;
+    box-shadow: none !important;
+  }
+
+  /* Kill every separator line inside the menu */
+  nav ul li {
+    border: 0 !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
+  nav ul a {
+    border: 0 !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+    padding: .85rem 1.2rem !important;
+  }
+
+  /* Disable the desktop underline pseudo-element entirely on mobile */
+  nav a::after,
+  nav a::before {
+    display: none !important;
+    content: none !important;
+    border: 0 !important;
+  }
+
+  /* Header keeps its bottom rule; nothing else */
+  header {
+    border-bottom: 1px solid var(--ink) !important;
+  }
+  header::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* No borders on the toggle button either */
+  .menu-toggle {
+    border: 0 !important;
+    padding: .5rem !important;
+  }
+}
