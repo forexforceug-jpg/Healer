@@ -600,3 +600,92 @@ footer { position: relative; z-index: 1; }
 
 /* Hero compact should never cover the header even with long titles */
 .hero.compact { padding-top: calc(var(--navh) + 1rem) !important; }
+
+/* --- Service cards: bulletproof styling --- */
+.services-list {
+  display: block !important;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.service-card {
+  display: grid !important;
+  grid-template-columns: 100px 1fr !important;
+  gap: 1.6rem;
+  align-items: start;
+  padding: 1.8rem 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-top: 1px solid var(--rule-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.services-list .service-card:first-child {
+  border-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.service-card img {
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border: 1px solid var(--ink) !important;
+  padding: 3px !important;
+  background: var(--paper) !important;
+  margin: 0 !important;
+}
+
+.service-card h3 {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 600 !important;
+  font-size: 1.35rem !important;
+  color: var(--ink) !important;
+  letter-spacing: .01em;
+  margin: 0 0 .4rem 0 !important;
+  padding: 0 !important;
+  line-height: 1.25;
+}
+
+.service-card h3::before {
+  content: "— " !important;
+  color: var(--clay) !important;
+}
+
+.service-card p {
+  font-family: 'Lora', serif !important;
+  font-weight: 400 !important;
+  color: var(--ink-2) !important;
+  font-size: .98rem !important;
+  line-height: 1.7;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hero on services page: keep it readable */
+.services-page-hero,
+.hero.compact {
+  color: var(--ink) !important;
+}
+.hero.compact h2 { color: var(--ink) !important; }
+.hero.compact h2 em { color: var(--clay-deep) !important; }
+.hero.compact p { color: var(--ink-2) !important; }
+
+/* Mobile: shrink thumbnail, keep row layout */
+@media (max-width: 900px) {
+  .service-card {
+    grid-template-columns: 72px 1fr !important;
+    gap: 1rem;
+    padding: 1.4rem 0 !important;
+  }
+  .service-card img {
+    width: 72px !important;
+    height: 72px !important;
+  }
+  .service-card h3 { font-size: 1.18rem !important; }
+  .service-card p  { font-size: .93rem !important; }
+}
