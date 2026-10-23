@@ -457,50 +457,146 @@ footer span{color:var(--clay-deep);font-style:normal}
   .blog-body h3,.service-card h3{font-size:1.18rem}
 }
 
-/* --- Remove excess mobile nav lines --- */
+/* --- FIX: mobile nav stacking, lines, and hero contrast --- */
+
+/* Header: absolute top layer, nothing can overlap it */
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: var(--navh) !important;
+  z-index: 99999 !important;
+  isolation: isolate;
+  background: var(--paper) !important;
+  border-bottom: 1px solid var(--ink) !important;
+  box-shadow: none !important;
+}
+header::before,
+header::after { display: none !important; content: none !important; border: 0 !important; }
+
+/* Nav bar itself: no borders, no backgrounds that bleed */
+nav {
+  background: transparent !important;
+  border: 0 !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Everything below the header needs a stacking context lower than it */
+main { position: relative; z-index: 1; }
+footer { position: relative; z-index: 1; }
+
+/* Hero contrast: force dark text on light background, no overlays */
+.hero,
+.hero.compact {
+  background-image: none !important;
+  background-color: var(--paper-2) !important;
+  color: var(--ink) !important;
+}
+.hero h2,
+.hero.compact h2 { color: var(--ink) !important; }
+.hero h2 em,
+.hero.compact h2 em { color: var(--clay-deep) !important; }
+.hero p,
+.hero.compact p { color: var(--ink-2) !important; }
+.hero-eyebrow { color: var(--clay-deep) !important; }
+
 @media (max-width: 900px) {
-  /* Menu panel: one clean line under the header only */
+
+  /* Menu panel: fully hidden when closed so no link peeks over the header */
   nav ul {
+    position: fixed !important;
+    top: var(--navh) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100%;
+    margin: 0;
+    padding: .5rem 0 !important;
     background: var(--paper-2) !important;
-    padding: .25rem 0 !important;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 0 !important;
     border-top: 0 !important;
     border-bottom: 1px solid var(--ink) !important;
-    box-shadow: none !important;
+    box-shadow: 0 4px 0 rgba(36,26,18,.08) !important;
+    transform: translateY(-110%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform .3s ease, opacity .25s ease, visibility 0s .3s;
+    pointer-events: none;
+    z-index: 99998;
+    max-height: calc(100vh - var(--navh));
+    overflow-y: auto;
   }
 
-  /* Kill every separator line inside the menu */
+  nav ul.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform .3s ease, opacity .2s ease, visibility 0s 0s;
+  }
+
+  /* No lines between links, no lines on links */
   nav ul li {
+    width: 100%;
+    text-align: center;
     border: 0 !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
-  }
-  nav ul a {
-    border: 0 !important;
-    border-top: 0 !important;
-    border-bottom: 0 !important;
-    padding: .85rem 1.2rem !important;
+    margin: 0;
+    padding: 0;
   }
 
-  /* Disable the desktop underline pseudo-element entirely on mobile */
+  nav ul a {
+    display: block;
+    padding: 1rem 1.2rem !important;
+    border: 0 !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+    color: var(--ink-2) !important;
+    background: transparent !important;
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  nav ul a:hover,
+  nav ul a.active {
+    color: var(--clay-deep) !important;
+    background: rgba(139,74,43,.06) !important;
+  }
+
+  /* Kill every pseudo-element on the nav that could draw a line */
   nav a::after,
-  nav a::before {
+  nav a::before,
+  nav ul::after,
+  nav ul::before,
+  nav li::after,
+  nav li::before {
     display: none !important;
     content: none !important;
     border: 0 !important;
+    background: transparent !important;
   }
 
-  /* Header keeps its bottom rule; nothing else */
+  /* Toggle button: flat, no border box */
+  .menu-toggle {
+    border: 0 !important;
+    background: transparent !important;
+    padding: .5rem !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Keep header's single bottom rule */
   header {
     border-bottom: 1px solid var(--ink) !important;
   }
-  header::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  /* No borders on the toggle button either */
-  .menu-toggle {
-    border: 0 !important;
-    padding: .5rem !important;
-  }
 }
+
+/* Hero compact should never cover the header even with long titles */
+.hero.compact { padding-top: calc(var(--navh) + 1rem) !important; }
